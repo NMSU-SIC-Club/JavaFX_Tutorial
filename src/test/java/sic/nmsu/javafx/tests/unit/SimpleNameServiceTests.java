@@ -19,11 +19,19 @@ import sic.nmsu.javafx.service.SimpleNameService;
 @ContextConfiguration(classes = { SimpleNameService.class })
 public class SimpleNameServiceTests {
 
+	/**
+	 * Constructor Parameters for instantiating tests
+	 * @return
+	 */
 	public @Parameters static Collection<Object[]> data() {
 		return Arrays.asList(new Object[][] { { "noChange", "noChange" }, { "with space", "with_space" },
 				{ "with-hypen", "with_hypen" }, { " $ymb@1$ .", "__ymb_1___" } });
 	}
 
+	/**
+	 * Initializes Autowired fields
+	 * @throws Exception
+	 */
 	public @Before void setUp() throws Exception {
 		new TestContextManager(getClass()).prepareTestInstance(this);
 	}

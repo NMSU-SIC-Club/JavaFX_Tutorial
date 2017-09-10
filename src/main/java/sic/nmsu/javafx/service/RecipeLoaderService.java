@@ -15,6 +15,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.testfx.api.annotation.Unstable;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonIOException;
@@ -24,6 +25,13 @@ import com.google.gson.stream.JsonWriter;
 
 import sic.nmsu.javafx.model.Recipe;
 
+/**
+ * Simple Service for loading and saving Recipe Lists to individual files
+ * 
+ * @author Shane
+ *
+ */
+@Unstable(reason = "untested")
 @Service
 public class RecipeLoaderService {
 	private static Logger logger = LogManager.getLogger();

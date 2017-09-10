@@ -1,6 +1,9 @@
 package sic.nmsu.javafx;
 
 import org.javatuples.Pair;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 
 import javafx.application.*;
 import javafx.scene.Parent;
@@ -11,29 +14,34 @@ import sic.nmsu.javafx.bootstrap.Resolver;
 import sic.nmsu.javafx.controller.FXController;
 import sic.nmsu.javafx.controller.MainController;
 
+@Configuration
+@Import(Resolver.class)
 public class App extends Application {
 
 	private static Stage mainStage = null;
+	private static HostServices hostServices = null;
 	
 	public static void main(String[] args) {
-		Resolver.init();
 		launch(args);
 	}
 	
-	public static Stage getMainStage() {
+	@Bean
+	public static Stage mainStage() {
 		return App.mainStage;
 	}
 	
-	public static void setMainStage(Stage mainStage) {
-		App.mainStage = mainStage;
+	public static HostServices hostServices() {
+		return App.hostServices;
 	}
 
 	@Override
-	public void start(Stage mainStage) throws Exception {
-		setMainStage(mainStage);
-		Pair<Parent, MainController> result = FXController.get(MainController.class, "view/MainView.fxml",
-				c -> c.setStage(mainStage));
-		mainStage.setScene(new Scene(result.getValue0(), 400, 300));
+	public void start(Stage mainStage) throws Exception {		
+		App.mainStage = mainStage;
+		App.hostServices = getHostServices();
+		
+		Resolver.init(App.class);
+		Pair<Parent, MainController> result = FXController.get("view/MainView.fxml");
+		mainStage.setScene(new Scene(result.getValue0()));
 		mainStage.setTitle("Recipe Book");
 		mainStage.getIcons().add(new Image("images/recipe_icon.png"));
 		mainStage.show();
