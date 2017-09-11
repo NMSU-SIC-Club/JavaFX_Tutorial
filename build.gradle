@@ -18,6 +18,10 @@ sourceSets {
     }
 }
 
+test {
+	systemProperties System.getProperties()
+}
+
 dependencies {
 	compile 'org.javatuples:javatuples:1.2'
     compile 'org.springframework:spring-context:4.3.+'
