@@ -15,7 +15,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.testfx.api.annotation.Unstable;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonIOException;
@@ -31,7 +30,6 @@ import sic.nmsu.javafx.model.Recipe;
  * @author Shane
  *
  */
-@Unstable(reason = "untested")
 @Service
 public class RecipeLoaderService {
 	private static Logger logger = LogManager.getLogger();
