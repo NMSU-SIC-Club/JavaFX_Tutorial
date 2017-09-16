@@ -79,6 +79,8 @@ gradle build                                 // will test the app with the GUI
 
 gradle test                                  // will test the app without the GUI
 
+gradle run                                   // will launch the application
+
 ...
 
 #  (9/15/2017)
